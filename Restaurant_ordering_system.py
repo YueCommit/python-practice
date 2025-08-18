@@ -2,20 +2,25 @@
 print("Welcome to Python Burger! Here is our menu with prices:")
 #  initiate menu dictionary
 menu = {
-    "burger": 5.99,
-    "pizza": 8.49,
-    "salad": 4.99,
-    "drink": 1.99
+   1: {"name": "burger", "price": 5.99},
+   2: {"name": "pizza", "price": 8.49},
+   3: {"name": "salad", "price": 4.99},
+   4: {"name": "drink", "price": 1.99}
 }
-item_number = 1
-for item, price in menu.items():
-    print(f"{item_number}. {item}, ${price}")
-    item_number += 1
+
+#final order total value
+order_total = 0
 
 while True:
+    #print menu with number, name and price
+    for item_number, details in menu.items():
+        print(f"{item_number}. {details['name']}, ${details['price']}")
 
+    # Prompt menu selection
+    item_choice = (input("Choose menu item: ")).lower()
+    # Prompt qty
+    item_qty = int(input("How many would you like to order? "))
 
-# order_total = 0
 
 # # Initiate WHILE loop
 # while True:
@@ -27,21 +32,8 @@ while True:
 #     print("3.   Salad  | $4.99")
 #     print("4.   Drink  | $1.99")
 
-# # Prompt menu selection
-#     item_choice = (input("Choose item number: "))
-
-# # Prompt qty
-#     item_qty = int(input("How many would you like to order? "))
 
 # # STOP HERE
-
-
-
-
-
-
-
-
 
 # # add to order
 # ability for cust. to add mult qty of items from menu to order
