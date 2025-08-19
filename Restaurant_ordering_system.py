@@ -7,7 +7,7 @@ menu = {
    3: {"name": "salad", "price": 4.99},
    4: {"name": "drink", "price": 1.99}
 }
-
+file_path = r"C:\Users\xuy24\Documents\Files I need\Apprenti Python\python-practice\receipt.txt"
 #final order total value
 
 order = {}
@@ -50,7 +50,13 @@ def price_calculation():
         item_total += line_total
         print(f"{item_name}: {qty} = ${line_total:.2f}")
     print(f"Grand Total: ${item_total:.2f}")
-
+    # Write receipt to a new file
+    with open(file_path, "w") as f:
+        for item_name, qty in order.items():
+            price = name_to_price[item_name]
+            line_total = price * qty
+            f.write(f"{item_name}: {qty} = ${line_total:.2f}\n")
+        f.write(f"Grand Total: ${item_total:.2f}\n")
 
 # Main ordering loop: only call price_calculation after user is done ordering
 while True:
@@ -60,6 +66,7 @@ while True:
         break
 # Final price calculation
 price_calculation()
+
 
 
 
