@@ -22,7 +22,7 @@ while True:
         item_qty = int(input("How many would you like to order? "))
         item_name = menu[item_choice]['name']
         #adding chosen menu item price to running total
-        item_total += menu[item_choice]['price'] * item_qty
+        #item_total += menu[item_choice]['price'] * item_qty
         if item_name in order:
             order[item_name] += item_qty
         else:
@@ -31,17 +31,22 @@ while True:
         #printing order dic
         print(f"Your final order is: {order}")
         #printing 'item' and 'quantity' from order dictionary
-        for item, quantity in order.items():
-            print(f"{item}: {quantity}")
+        #for item, quantity in order.items():
+            #print(f"{item}: {quantity}")
         #final total print to 2 decimals 
-        print(f"Your total cost is: ${item_total:.2f}")
+        #print(f"Your total cost is: ${item_total:.2f}")
         break
     else:
         print("That is an invalid answer!")
 
-# for item, qty in order.items():
-#     item_total += menu[item]['price'] * qty
-# print(f"Your total cost is: ${item_total:.2f}")
+#calculating total outside of loop
+name_to_price = {item['name']: item['price'] for item in menu.values()}
+for item_name, qty in order.items():
+    price = name_to_price[item_name]
+    line_total = price * qty
+    item_total += line_total
+    print(f"{item_name}: {qty} = ${line_total:.2f}")
+print(f"Grand Total: ${item_total:.2f}")
 
 
 # # Initiate WHILE loop
