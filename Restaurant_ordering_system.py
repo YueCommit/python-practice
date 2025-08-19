@@ -16,7 +16,7 @@ for item_number, details in menu.items():
     print(f"{item_number}. {details['name']}, ${details['price']}")
 while True:
     # Prompt menu selection
-    item_choice = int(input("Choose menu item (enter '5' if you are finished): "))
+    item_choice = int(input("Choose menu item: "))
     # Prompt quantity
     if item_choice in menu:
         item_qty = int(input("How many would you like to order? "))
@@ -27,17 +27,13 @@ while True:
             order[item_name] += item_qty
         else:
             order[item_name] = item_qty
-    elif item_choice == 5:
-        #printing order dic
-        print(f"Your final order is: {order}")
-        #printing 'item' and 'quantity' from order dictionary
-        #for item, quantity in order.items():
-            #print(f"{item}: {quantity}")
-        #final total print to 2 decimals 
-        #print(f"Your total cost is: ${item_total:.2f}")
-        break
     else:
         print("That is an invalid answer!")
+    # prompt user if they would like to continue ordering
+    continue_ordering = input("Would you like to order anything else? (yes/no): ").strip().lower()
+    if continue_ordering != 'yes':
+        print(f"Your final order is: {order}")
+        break
 
 #calculating total outside of loop
 name_to_price = {item['name']: item['price'] for item in menu.values()}
