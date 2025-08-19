@@ -16,18 +16,23 @@ for item_number, details in menu.items():
     print(f"{item_number}. {details['name']}, ${details['price']}")
 while True:
     # Prompt menu selection
-    item_choice = int(input("Choose menu item: "))
+    item_choice = int(input("Choose menu item (enter '5' if you are finished): "))
     # Prompt qty
-    item_qty = int(input("How many would you like to order? "))
-
     if item_choice in menu:
+        item_qty = int(input("How many would you like to order? "))
         item_name = menu[item_choice]['name']
         if item_name in order:
             order[item_name] += item_qty
         else:
             order[item_name] = item_qty
-
         print(order)
+    elif item_choice == 5:
+        print(f"Your final order is: {order}")
+        break
+    else:
+        print("That is an invalid answer!")
+       
+        
 
 
 # # Initiate WHILE loop
