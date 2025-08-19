@@ -9,17 +9,25 @@ menu = {
 }
 
 #final order total value
-order_total = 0
-
+item_total = 0
+order = {}
+#print menu with number, name and price
+for item_number, details in menu.items():
+    print(f"{item_number}. {details['name']}, ${details['price']}")
 while True:
-    #print menu with number, name and price
-    for item_number, details in menu.items():
-        print(f"{item_number}. {details['name']}, ${details['price']}")
-
     # Prompt menu selection
-    item_choice = (input("Choose menu item: ")).lower()
+    item_choice = int(input("Choose menu item: "))
     # Prompt qty
     item_qty = int(input("How many would you like to order? "))
+
+    if item_choice in menu:
+        item_name = menu[item_choice]['name']
+        if item_name in order:
+            order[item_name] += item_qty
+        else:
+            order[item_name] = item_qty
+
+        print(order)
 
 
 # # Initiate WHILE loop
