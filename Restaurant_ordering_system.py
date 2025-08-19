@@ -9,13 +9,15 @@ menu = {
 }
 
 #final order total value
-item_total = 0
+
 order = {}
 #print menu with number, name and price
-for item_number, details in menu.items():
-    print(f"{item_number}. {details['name']}, ${details['price']}")
-while True:
-    # Prompt menu selection
+def print_menu():
+    for item_number, details in menu.items():
+        print(f"{item_number}. {details['name']}, ${details['price']}")
+#def functions
+def user_input():
+     # Prompt menu selection
     item_choice = int(input("Choose menu item: "))
     # Prompt quantity
     if item_choice in menu:
@@ -29,20 +31,37 @@ while True:
             order[item_name] = item_qty
     else:
         print("That is an invalid answer!")
+
+def user_continuation():
     # prompt user if they would like to continue ordering
     continue_ordering = input("Would you like to order anything else? (yes/no): ").strip().lower()
     if continue_ordering != 'yes':
         print(f"Your final order is: {order}")
-        break
+        return False
+    return True
 
-#calculating total outside of loop
-name_to_price = {item['name']: item['price'] for item in menu.values()}
-for item_name, qty in order.items():
-    price = name_to_price[item_name]
-    line_total = price * qty
-    item_total += line_total
-    print(f"{item_name}: {qty} = ${line_total:.2f}")
-print(f"Grand Total: ${item_total:.2f}")
+def price_calculation():
+    item_total = 0
+    #calculating total outside of loop
+    name_to_price = {item['name']: item['price'] for item in menu.values()}
+    for item_name, qty in order.items():
+        price = name_to_price[item_name]
+        line_total = price * qty
+        item_total += line_total
+        print(f"{item_name}: {qty} = ${line_total:.2f}")
+    print(f"Grand Total: ${item_total:.2f}")
+
+
+# Main ordering loop: only call price_calculation after user is done ordering
+while True:
+    print_menu()
+    user_input()
+    if not user_continuation():
+        break
+# Final price calculation
+price_calculation()
+
+
 
 
 # # Initiate WHILE loop
