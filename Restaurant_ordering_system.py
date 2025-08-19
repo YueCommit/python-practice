@@ -17,22 +17,31 @@ for item_number, details in menu.items():
 while True:
     # Prompt menu selection
     item_choice = int(input("Choose menu item (enter '5' if you are finished): "))
-    # Prompt qty
+    # Prompt quantity
     if item_choice in menu:
         item_qty = int(input("How many would you like to order? "))
         item_name = menu[item_choice]['name']
+        #adding chosen menu item price to running total
+        item_total += menu[item_choice]['price'] * item_qty
         if item_name in order:
             order[item_name] += item_qty
         else:
             order[item_name] = item_qty
-        print(order)
     elif item_choice == 5:
+        #printing order dic
         print(f"Your final order is: {order}")
+        #printing 'item' and 'quantity' from order dictionary
+        for item, quantity in order.items():
+            print(f"{item}: {quantity}")
+        #final total print to 2 decimals 
+        print(f"Your total cost is: ${item_total:.2f}")
         break
     else:
         print("That is an invalid answer!")
-       
-        
+
+# for item, qty in order.items():
+#     item_total += menu[item]['price'] * qty
+# print(f"Your total cost is: ${item_total:.2f}")
 
 
 # # Initiate WHILE loop
